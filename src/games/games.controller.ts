@@ -9,6 +9,7 @@ export class GamesController {
 
   @Post()
   create(@Body() createGameDto: CreateGameDto) {
+    console.log(createGameDto)
     return this.gamesService.create(createGameDto);
   }
 

@@ -15,8 +15,31 @@ model Game {
   id           Int      @id @default(autoincrement())
   team1        String
   team2        String
-  dateCreation String
+  dateCreation DateTime @default(now())
   dateGame     String
   winner       Int
+  bet          Bet[]
 }
 
+
+
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String   
+  email        String    @unique
+  dateCreation DateTime  @default(now())
+  points       String  
+  bet           Bet[]
+}
+
+model Bet {
+  id            Int      @id @default(autoincrement())
+  game          Game @relation(fields: [gameId], references: [id])
+  gameId        Int
+  betTeam       Int
+  points        String
+  userId        Int
+  user          User @relation(fields: [userId], references: [id])
+  
+}
